@@ -14,8 +14,9 @@ type DestinationDto struct {
 }
 
 type ImageDestinationDto struct {
-	FileName  string
-	IsPrimary bool
+	FileName  string `json:"fileName"`
+	IsPrimary bool   `json:"isPrimary"`
+	Url       string `json:"url"`
 }
 
 type RatingDto struct {
