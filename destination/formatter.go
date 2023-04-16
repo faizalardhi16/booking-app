@@ -4,8 +4,8 @@ type DestinationResponse struct {
 	ID               string                `json:"id"`
 	DestinationName  string                `json:"destination_name"`
 	Description      string                `json:"description"`
-	ShortDescription string                `json:"short_description"`
-	Image            []ImageDestinationDto `json:"image_destination"`
+	ShortDescription string                `json:"shortDescription"`
+	Image            []ImageDestinationDto `json:"imageDestination"`
 	Rating           float64               `json:"rating"`
 }
 

@@ -1,6 +1,8 @@
 package destination
 
 import (
+	"bookingApp/function"
+
 	"gorm.io/gorm"
 )
 
@@ -61,6 +63,20 @@ func (r *repository) GetAllDestination() ([]DestinationDto, error) {
 
 		if err != nil {
 			return destination, err
+		}
+
+		index := 0
+
+		for _, r := range image {
+			url, err := function.GetPresignedUrl(r.FileName)
+
+			if err != nil {
+				return destination, err
+			}
+
+			image[index].Url = url
+
+			index++
 		}
 
 		res.ImageDestination = image

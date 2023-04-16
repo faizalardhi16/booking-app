@@ -3,20 +3,20 @@ package destination
 import validation "github.com/go-ozzo/ozzo-validation"
 
 type DestinationInput struct {
-	DestinationName  string `json:"destination_name" binding:"required"`
+	DestinationName  string `json:"destinationName" binding:"required"`
 	Description      string `json:"description" binding:"required"`
-	ShortDescription string `json:"short_description" binding:"required"`
+	ShortDescription string `json:"shortDescription" binding:"required"`
 }
 
 type RatingInput struct {
 	Rate          int64  `json:"rate" binding:"required"`
-	DestinationID string `json:"destination_id" binding:"required"`
+	DestinationID string `json:"destinationId" binding:"required"`
 }
 
 type ImageInput struct {
-	FileName      string `json:"file_name" binding:"required"`
-	IsPrimary     bool   `json:"is_primary" binding:"required"`
-	DestinationID string `json:"destination_id" binding:"required"`
+	FileName      string `json:"fileName" binding:"required"`
+	IsPrimary     bool   `json:"isPrimary" binding:"required"`
+	DestinationID string `json:"destinationId" binding:"required"`
 }
 
 func (p DestinationInput) ValidationDestinationInput() error {

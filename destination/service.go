@@ -65,7 +65,7 @@ func (s *service) SaveImage(image ImageInput) (string, error) {
 	req := ImageDestination{}
 	isPrimary := 0
 
-	if image.IsPrimary != false {
+	if image.IsPrimary {
 		isPrimary = 1
 	}
 

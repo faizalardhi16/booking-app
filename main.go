@@ -2,6 +2,7 @@ package main
 
 import (
 	"bookingApp/destination"
+	"bookingApp/function"
 	"bookingApp/handler"
 	"bookingApp/models"
 	"bookingApp/todo"
@@ -84,31 +85,38 @@ func main() {
 	api.Post("/destination", destinationHandler.CreateDestination)
 	api.Post("/file", func(c *fiber.Ctx) error {
 
-		file, err := c.FormFile("upload")
+		// url, err := function.GetPresignedUrl(c.FormValue("fileName"))
+
+		// if err != nil {
+		// 	return err
+		// }
+
+		upload, err := c.FormFile("upload")
 
 		if err != nil {
-			return err
+			return c.JSON(fiber.Map{
+				"Message":     "Failed to upload file",
+				"Status":      400,
+				"Data":        nil,
+				"Acknowledge": 1,
+			})
 		}
 
-		//open file
-
-		f, err := file.Open()
+		file, err := function.UploadToStorage(upload)
 
 		if err != nil {
-			return err
+			return c.JSON(fiber.Map{
+				"Message":     "Failed to upload file",
+				"Status":      400,
+				"Data":        nil,
+				"Acknowledge": 1,
+			})
 		}
-
-		//upload to s3
-		_, err = svc.PutObject(&s3.PutObjectInput{
-			Bucket: aws.String("mygobucketzores"),
-			Key:    aws.String(file.Filename),
-			Body:   f,
-		})
 
 		return c.JSON(fiber.Map{
 			"Message":     "Success to upload file",
 			"Status":      201,
-			"Data":        file.Filename,
+			"Data":        file,
 			"Acknowledge": 1,
 		})
 	})
