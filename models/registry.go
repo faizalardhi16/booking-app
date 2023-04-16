@@ -17,6 +17,8 @@ func listRegistry() []Model {
 		{Model: ImageDestination{}},
 		{Model: Rating{}},
 		{Model: Destination{}},
+		{Model: User{}},
+		{Model: Avatar{}},
 	}
 }
 
